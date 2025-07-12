@@ -161,7 +161,6 @@
     <Copy SourceFiles="@(TextureFiles)" DestinationFolder="$(RimWorldModsPath)Textures\%(RecursiveDir)" />
     <Copy SourceFiles="@(NewsFiles)" DestinationFolder="$(RimWorldModsPath)News\%(RecursiveDir)" />
     <Copy SourceFiles="@(LoadFoldersFile)" DestinationFolder="$(RimWorldModsPath)" />
-    <Copy SourceFiles="@(PublishedFileIdFile)" DestinationFolder="$(RimWorldModsPath)" />
     <Copy SourceFiles="@(PublishedFileIdFile)" DestinationFolder="$(RimWorldModsPath)About\" />
   </Target>
 </Project>
