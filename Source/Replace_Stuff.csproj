@@ -130,7 +130,7 @@
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <PropertyGroup>
       <ModName>Replace_Stuff</ModName>
-      <RimWorldModsPath>$(USERPROFILE)\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Mods\$(ModName)\</RimWorldModsPath>
+      <RimWorldModsPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ModName)\</RimWorldModsPath>
       <ModSourcePath>$(ProjectDir)..</ModSourcePath>
     </PropertyGroup>
     
