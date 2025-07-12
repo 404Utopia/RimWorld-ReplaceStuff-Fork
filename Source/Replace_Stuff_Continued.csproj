@@ -89,6 +89,7 @@
     <Compile Include="NewThing\TransferSettings.cs" />
     <Compile Include="Other\FramesDontBlock.cs" />
     <Compile Include="Other\PawnBlockConstruction.cs" />
+    <Compile Include="BackwardCompatibility.cs" />
     <Compile Include="OverMineable\BlueprintOverFogged.cs" />
     <Compile Include="OverMineable\BlueprintOverRockToggle.cs" />
     <Compile Include="OverMineable\CanPlaceBlueprintOverMineable.cs" />
