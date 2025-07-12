@@ -61,7 +61,7 @@ namespace Replace_Stuff.OverMineable
 		static HaulToBlueprintUnderRock()
 		{
 			HarmonyMethod transpiler = new HarmonyMethod(typeof(DeliverUnderRock), nameof(DeliverUnderRock.Transpiler));
-			Harmony harmony = new Harmony("Uuugggg.rimworld.Replace_Stuff.main");
+			Harmony harmony = new Harmony("404Utopia.rimworld.Replace_Stuff.main");
 
 			Predicate<MethodInfo> check = m => m.Name.Contains("JumpToCarryToNextContainerIfPossible");
 

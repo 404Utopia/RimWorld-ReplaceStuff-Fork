@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Replace Stuff</name>
-	<author>Uuugggg</author>
+	<name>Replace Stuff Continued</name>
+	<author>404Utopia (updated from Uuugggg's original)</author>
 	<supportedVersions>
 		<li>1.1</li>
 		<li>1.2</li>
@@ -10,7 +10,7 @@
 		<li>1.5</li>
 		<li>1.6</li>
 	</supportedVersions>
-	<packageId>Uuugggg.ReplaceStuff</packageId>
+	<packageId>404Utopia.ReplaceStuffContinued</packageId>
 	<description>Replace the stuff that a thing is made from, e.g. replace a wall's materials.
 	
 This mod does NOT deconstruct and reconstruct. It preserves the existing building and replaces materials in-place.
@@ -24,8 +24,10 @@ It doesn't break down the existing building, which means:
 Replacing walls doesn't break the room, and keeps freezers cold.
 Replacing workbenches doesn't delete bills.
 
-Check Steam page for any updated info.</description>
-	<url>https://steamcommunity.com/id/Uuugggg/myworkshopfiles/?appid=294100</url>
+Check Steam page for any updated info.
+
+Updated for RimWorld 1.6 by 404Utopia. Original mod by Uuugggg.</description>
+	<url>https://github.com/404Utopia/RimWorld-ReplaceStuff-Fork</url>
 	<modDependencies>
 		<li>
 			<packageId>brrainz.harmony</packageId>

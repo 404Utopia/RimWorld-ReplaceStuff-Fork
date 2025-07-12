@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 	<HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase">
-		<modNameReadable>Replace Stuff</modNameReadable>
-		<modIdentifier>Uuugggg.ReplaceStuff</modIdentifier>
+		<modNameReadable>Replace Stuff Continued</modNameReadable>
+		<modIdentifier>404Utopia.ReplaceStuffContinued</modIdentifier>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1372003680</linkUrl>
 	</HugsLib.UpdateFeatureDef>
 	
@@ -12,5 +12,17 @@
 		<content>Replace Stuff now will place modded bridges when needed.
 You can set a preference of which bridge to build in the settings.
 (It will still prefer bridges you have resources for)</content>
+	</HugsLib.UpdateFeatureDef>
+	
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+		<defName>Uuugggg_ReplaceStuff_1_6_0</defName>
+		<assemblyVersion>1.6.0</assemblyVersion>
+		<content>Replace Stuff Continued has been updated for RimWorld 1.6!
+
+- Updated mod compatibility for RimWorld 1.6
+- Fixed logging issues with new RimWorld API
+- Maintained all existing functionality for building replacement and cooler placement
+
+Thanks to Uuugggg for the original mod!</content>
 	</HugsLib.UpdateFeatureDef>
 </Defs>

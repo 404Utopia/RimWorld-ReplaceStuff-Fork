@@ -129,18 +129,18 @@
   </PropertyGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <PropertyGroup>
-      <ModName>Replace_Stuff</ModName>
+      <ModName>Replace_Stuff_Continued</ModName>
       <RimWorldModsPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ModName)\</RimWorldModsPath>
       <ModSourcePath>$(ProjectDir)..</ModSourcePath>
     </PropertyGroup>
     
-    <!-- Copy DLL to local Assemblies folder -->
+    <!-- Copy only the main DLL to local Assemblies folder -->
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ModSourcePath)\Assemblies\" />
     
     <!-- Copy mod folders to RimWorld mods directory -->
     <ItemGroup>
       <AboutFiles Include="$(ModSourcePath)\About\**\*.*" />
-      <AssemblyFiles Include="$(ModSourcePath)\Assemblies\**\*.*" />
+      <MainAssemblyFile Include="$(ModSourcePath)\Assemblies\$(AssemblyName).dll" />
       <DefFiles Include="$(ModSourcePath)\Defs\**\*.*" />
       <LanguageFiles Include="$(ModSourcePath)\Languages\**\*.*" />
       <PatchFiles Include="$(ModSourcePath)\Patches\**\*.*" />
@@ -150,11 +150,11 @@
     </ItemGroup>
     
     <Copy SourceFiles="@(AboutFiles)" DestinationFolder="$(RimWorldModsPath)About\%(RecursiveDir)" />
-    <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(RimWorldModsPath)Assemblies\%(RecursiveDir)" />
-    <Copy SourceFiles="@(DefFiles)" DestinationFolder="$(RimWorldModsPath)Defs\%(RecursiveDir)" />
-    <Copy SourceFiles="@(LanguageFiles)" DestinationFolder="$(RimWorldModsPath)Languages\%(RecursiveDir)" />
-    <Copy SourceFiles="@(PatchFiles)" DestinationFolder="$(RimWorldModsPath)Patches\%(RecursiveDir)" />
-    <Copy SourceFiles="@(TextureFiles)" DestinationFolder="$(RimWorldModsPath)Textures\%(RecursiveDir)" />
+    <Copy SourceFiles="@(MainAssemblyFile)" DestinationFolder="$(RimWorldModsPath)1.6\Assemblies\" />
+    <Copy SourceFiles="@(DefFiles)" DestinationFolder="$(RimWorldModsPath)1.6\Defs\%(RecursiveDir)" />
+    <Copy SourceFiles="@(LanguageFiles)" DestinationFolder="$(RimWorldModsPath)1.6\Languages\%(RecursiveDir)" />
+    <Copy SourceFiles="@(PatchFiles)" DestinationFolder="$(RimWorldModsPath)1.6\Patches\%(RecursiveDir)" />
+    <Copy SourceFiles="@(TextureFiles)" DestinationFolder="$(RimWorldModsPath)1.6\Textures\%(RecursiveDir)" />
     <Copy SourceFiles="@(NewsFiles)" DestinationFolder="$(RimWorldModsPath)News\%(RecursiveDir)" />
     <Copy SourceFiles="@(LoadFoldersFile)" DestinationFolder="$(RimWorldModsPath)" />
   </Target>

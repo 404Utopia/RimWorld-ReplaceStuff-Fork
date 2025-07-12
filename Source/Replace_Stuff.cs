@@ -19,7 +19,7 @@ namespace Replace_Stuff
 #if DEBUG
 				Harmony.DEBUG = true;
 #endif
-				new Harmony("Uuugggg.rimworld.Replace_Stuff.main").PatchAll();
+				new Harmony("404Utopia.rimworld.Replace_Stuff.main").PatchAll();
 			}
 			catch (System.Exception ex)
 			{
