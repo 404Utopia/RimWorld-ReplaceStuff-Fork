@@ -33,55 +33,60 @@ namespace Replace_Stuff_Continued.PlaceBridges
 		//public static bool CanBuildOnTerrain(BuildableDef entDef, IntVec3 c, Map map, Rot4 rot, Thing thingToIgnore = null, ThingDef stuffDef = null)
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase method)
 		{
-			LocalVariableInfo posInfo = method.GetMethodBody().LocalVariables.First(lv => lv.LocalType == typeof(IntVec3));
+			// Find local variables dynamically
+			LocalVariableInfo itemInfo = method.GetMethodBody().LocalVariables.First(lv => lv.LocalType == typeof(IntVec3));
+			LocalVariableInfo terrainAffordanceNeedInfo = method.GetMethodBody().LocalVariables.First(lv => lv.LocalType == typeof(TerrainAffordanceDef));
 			
 			// RimWorld 1.6 now uses GridsUtility.GetAffordances() instead of TerrainDef.affordances
 			MethodInfo getAffordancesMethod = AccessTools.Method(typeof(Verse.GridsUtility), nameof(Verse.GridsUtility.GetAffordances));
 
-			bool firstOnly = true;
+			bool patched = false;
 			var instList = instructions.ToList();
-			for(int i=0;i<instList.Count();i++)
+			for(int i=0; i < instList.Count - 2; i++)
 			{
 				var inst = instList[i];
-				// Look for the GetAffordances() method call instead of field access
-				if(inst.Calls(getAffordancesMethod) && firstOnly)
+				var nextInst = instList[i + 1];
+				var nextNextInst = instList[i + 2];
+				
+				// Look for the exact pattern: GetAffordances call followed by terrainAffordanceNeed load followed by Contains call
+				if(inst.Calls(getAffordancesMethod) && 
+				   nextInst.IsLdloc() && 
+				   nextNextInst.opcode == OpCodes.Callvirt && !patched)
 				{
-					firstOnly = false;
+					patched = true;
 
-					// RimWorld 1.6 pattern:
-					// IL_xxxx: ldloc.?      // IntVec3 item
-					// IL_xxxx: ldarg.2      // Map map  
-					// IL_xxxx: call         class [mscorlib]System.Collections.Generic.List`1<class Verse.TerrainAffordanceDef> Verse.GridsUtility::GetAffordances(valuetype Verse.IntVec3, class Verse.Map)
-					// IL_xxxx: ldloc.0      // terrainAffordanceNeed
-					// IL_xxxx: callvirt     instance bool class [mscorlib]System.Collections.Generic.List`1<class Verse.TerrainAffordanceDef>::Contains(!0/*class Verse.TerrainAffordanceDef*/)
-					// IL_xxxx: brtrue.s     IL_xxxx
+					// Keep the GetAffordances call result on the stack
+					yield return inst;
+					
+					// Skip the terrainAffordanceNeed load and Contains call, but get the terrainAffordanceNeed for our method
+					i += 2;
 
-					//Skip GetAffordances call, load terrainAffordanceNeed
-					i++;
-					yield return instList[i];
-
-					//skip call to Contains
-					i++;
-
-					//replace with TerrainOrBridgesCanDo (below)
-					yield return new CodeInstruction(OpCodes.Ldarg_0);//entDef
-					yield return new CodeInstruction(OpCodes.Ldloc, posInfo.LocalIndex);//IntVec3 pos
-					yield return new CodeInstruction(OpCodes.Ldarg_2);//Map
+					// Our method signature: TerrainOrBridgesCanDo(List<TerrainAffordanceDef> affordances, TerrainAffordanceDef neededDef, BuildableDef def, IntVec3 pos, Map map)
+					// Stack currently has: affordances list from GetAffordances call
+					yield return new CodeInstruction(OpCodes.Ldloc, terrainAffordanceNeedInfo.LocalIndex); // TerrainAffordanceDef needed
+					yield return new CodeInstruction(OpCodes.Ldarg_0); // BuildableDef def
+					yield return new CodeInstruction(OpCodes.Ldloc, itemInfo.LocalIndex); // IntVec3 pos
+					yield return new CodeInstruction(OpCodes.Ldarg_2); // Map
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CanPlaceBlueprint), nameof(TerrainOrBridgesCanDo)));
-
-					//and it'll continue with the brtrue
 				}
 				else
 					yield return inst;
 			}
+			
+			// Return remaining instructions
+			for(int i = instList.Count - 2; i < instList.Count; i++)
+			{
+				if(i >= 0 && i < instList.Count)
+					yield return instList[i];
+			}
 		}
 
-		public static bool TerrainOrBridgesCanDo(TerrainDef tDef, TerrainAffordanceDef neededDef, BuildableDef def, IntVec3 pos, Map map)
+		public static bool TerrainOrBridgesCanDo(List<TerrainAffordanceDef> affordances, TerrainAffordanceDef neededDef, BuildableDef def, IntVec3 pos, Map map)
 		{
-			if (neededDef == null || def == null || map == null) return false;
+			if (affordances == null || neededDef == null || def == null || map == null) return false;
 			
-			// RimWorld 1.6: Use GetAffordances() which checks foundation terrain first
-			if (pos.GetAffordances(map)?.Contains(neededDef) == true)
+			// First check if the affordances already contain what we need
+			if (affordances.Contains(neededDef))
 				return true;
 
 			if (def is TerrainDef)
@@ -96,8 +101,8 @@ namespace Replace_Stuff_Continued.PlaceBridges
 				return true;
 
 			//Player not choosing to build and bridges possible: ok (elsewhere in code will place blueprints)
-			TerrainDef currentTerrain = map.terrainGrid.TerrainAt(pos);
-			if (DesignatorContext.designating && BridgelikeTerrain.FindBridgeFor(currentTerrain, neededDef, map) != null)
+			TerrainDef currentTerrain = map.terrainGrid?.TerrainAt(pos);
+			if (DesignatorContext.designating && currentTerrain != null && BridgelikeTerrain.FindBridgeFor(currentTerrain, neededDef, map) != null)
 				return true;
 
 			return false;
