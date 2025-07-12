@@ -73,7 +73,7 @@ jobs:
           - Maintained all original functionality
           
           Thanks to Uuugggg for the original mod!
-        draft: false
+        draft: true
         prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
