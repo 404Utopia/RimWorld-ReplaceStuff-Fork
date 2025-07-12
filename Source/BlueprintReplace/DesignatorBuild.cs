@@ -8,7 +8,7 @@ using HarmonyLib;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Replace_Stuff.BlueprintReplace
+namespace Replace_Stuff_Continued.BlueprintReplace
 {
 	[HarmonyPatch(typeof(GenSpawn), "SpawningWipes")]
 	static class WipeBlueprints

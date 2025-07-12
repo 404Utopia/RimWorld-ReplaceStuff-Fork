@@ -7,9 +7,9 @@ using UnityEngine;
 using Verse;
 using RimWorld;
 using HarmonyLib;
-using Replace_Stuff.PlaceBridges;
+using Replace_Stuff_Continued.PlaceBridges;
 
-namespace Replace_Stuff
+namespace Replace_Stuff_Continued
 {
 	public class Settings : ModSettings
 	{

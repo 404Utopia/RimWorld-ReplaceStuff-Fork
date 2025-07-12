@@ -6,7 +6,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Replace_Stuff.PlaceBridges
+namespace Replace_Stuff_Continued.PlaceBridges
 {
 	[HarmonyPatch(typeof(GenConstruct), "BlocksConstruction")]
 	class HandleBlocksConstruction

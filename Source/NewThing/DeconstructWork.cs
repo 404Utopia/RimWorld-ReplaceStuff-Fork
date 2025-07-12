@@ -6,7 +6,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Replace_Stuff.NewThing
+namespace Replace_Stuff_Continued.NewThing
 {
 	[HarmonyPatch(typeof(Frame), "WorkToBuild", MethodType.Getter)]
 	public static class NewThingDeconstructWork

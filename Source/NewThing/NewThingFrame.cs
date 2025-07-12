@@ -8,7 +8,7 @@ using RimWorld;
 using Verse;
 
 
-namespace Replace_Stuff.NewThing
+namespace Replace_Stuff_Continued.NewThing
 {
 	[DefOf]
 	public static class NewThingDefOf
@@ -33,7 +33,7 @@ namespace Replace_Stuff.NewThing
 			}
 			catch (System.Reflection.ReflectionTypeLoadException) //Aeh, this happens to people, should not happen, meh.
 			{
-				Verse.Log.Warning("Replace Stuff failed to check for RimFridges");
+				Verse.Log.Warning("Replace Stuff (Continued) failed to check for RimFridges");
 			}
 		}
 	}
@@ -92,7 +92,7 @@ namespace Replace_Stuff.NewThing
 				return result;
 			} 
 
-			// 1.6 added some tags for replacement. Add them here so Replace Stuff does then in-place
+			// 1.6 added some tags for replacement. Add them here so Replace Stuff (Continued) does then in-place
 			if(GenConstruct.HasMatchingReplacementTag(newDef, oldDef))
 			{
 				_replacementCache.Add((newDef, oldDef), true);

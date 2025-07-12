@@ -6,7 +6,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Replace_Stuff.OverMineable
+namespace Replace_Stuff_Continued.OverMineable
 {
 	[HarmonyPatch(typeof(ThingSelectionUtility), "SelectableByMapClick")]
 	class FoggedSelectable

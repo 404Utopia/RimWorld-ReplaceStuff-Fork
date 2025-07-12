@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 	
-	<TD.ReplaceStuff>Replace Stuff</TD.ReplaceStuff>
+	<TD.ReplaceStuff>Replace Stuff (Continued)</TD.ReplaceStuff>
 	<TD.Replace>替换</TD.Replace>
 	<TD.ReplaceDesc>替换某个东西的材质，例如将木墙换成石墙</TD.ReplaceDesc>
 	<TD.ReplacingTag>(替换中)</TD.ReplacingTag>

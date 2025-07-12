@@ -8,7 +8,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Replace_Stuff.PlaceBridges
+namespace Replace_Stuff_Continued.PlaceBridges
 {
 	public static class PlaceBridges
 	{
@@ -119,7 +119,7 @@ namespace Replace_Stuff.PlaceBridges
 			if (pos.GetThingList(map).Any(t => t.def.entityDefToBuild == bridgeDef))
 				return;//Already building!
 
-			Log.Message($"Replace Stuff placing {bridgeDef} for {sourceDef}({sourceDef.GetTerrainAffordanceNeed(stuff)}) on {map.terrainGrid.TerrainAt(pos)}");
+			Log.Message($"Replace Stuff (Continued) placing {bridgeDef} for {sourceDef}({sourceDef.GetTerrainAffordanceNeed(stuff)}) on {map.terrainGrid.TerrainAt(pos)}");
 			GenConstruct.PlaceBlueprintForBuild(bridgeDef, pos, map, rotation, faction, null);//Are there bridge precepts/styles?...
 		}
 	}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Verse;
 using RimWorld;
 
-namespace Replace_Stuff.CoolersOverWalls
+namespace Replace_Stuff_Continued.CoolersOverWalls
 {
 	//Designator_Build and _Dropdown both create their own dropdown list but only one shows
 	//That'll be _build designators with things made from stuff

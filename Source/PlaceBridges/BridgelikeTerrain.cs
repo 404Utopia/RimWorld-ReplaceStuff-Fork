@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 using RimWorld;
-namespace Replace_Stuff.PlaceBridges
+namespace Replace_Stuff_Continued.PlaceBridges
 {
 	//a list of terrain that adds new affordances, like what a bridge does
 	[StaticConstructorOnStartup]

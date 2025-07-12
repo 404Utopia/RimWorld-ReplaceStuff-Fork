@@ -9,7 +9,7 @@ using Verse;
 using Verse.AI;
 using RimWorld;
 
-namespace Replace_Stuff.OverMineable
+namespace Replace_Stuff_Continued.OverMineable
 {
 	//Include blueprints and frames in IsCornerTouchAllowed
 	//(Frames were included, but ReplaceStuff removes their 'edifice' status so they need to be re-included)
@@ -58,7 +58,7 @@ namespace Replace_Stuff.OverMineable
 					return instList.Take(i + 1);
 				}
 			}
-			Verse.Log.Warning("Replace Stuff failed to patch CanInteractThroughCorners");
+			Verse.Log.Warning("Replace Stuff (Continued) failed to patch CanInteractThroughCorners");
 			return instructions;
 		}
 	}

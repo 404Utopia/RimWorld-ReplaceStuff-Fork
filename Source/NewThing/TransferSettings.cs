@@ -6,7 +6,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Replace_Stuff.NewThing
+namespace Replace_Stuff_Continued.NewThing
 {
 	[HarmonyPatch(typeof(GenSpawn), "Spawn", new Type[]
 	{	typeof(Thing), typeof(IntVec3), typeof(Map), typeof(Rot4), typeof(WipeMode), typeof(bool), typeof(bool)})]

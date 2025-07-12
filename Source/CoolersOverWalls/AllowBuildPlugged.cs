@@ -6,7 +6,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Replace_Stuff.CoolersOverWalls
+namespace Replace_Stuff_Continued.CoolersOverWalls
 {
 	[HarmonyPatch(typeof(PlaceWorker_Cooler), "AllowsPlacing")]
 	class AllowBuildPlugged

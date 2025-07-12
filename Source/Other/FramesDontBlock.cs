@@ -8,7 +8,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Replace_Stuff.Other
+namespace Replace_Stuff_Continued.Other
 {
 	[HarmonyPatch(typeof(GenConstruct), "BlocksConstruction")]
 	class FramesDontBlock

@@ -5,9 +5,9 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using RimWorld;
-using Replace_Stuff.NewThing;
+using Replace_Stuff_Continued.NewThing;
 
-namespace Replace_Stuff
+namespace Replace_Stuff_Continued
 {
 	[StaticConstructorOnStartup]
 	public static class TexDefOf

@@ -9,7 +9,7 @@ using HarmonyLib;
 using Verse;
 using RimWorld;
 
-namespace Replace_Stuff.NewThing
+namespace Replace_Stuff_Continued.NewThing
 {
 	[HarmonyPatch(typeof(PlaceWorker_PreventInteractionSpotOverlap), nameof(PlaceWorker_PreventInteractionSpotOverlap.AllowsPlacing))]
 	public static class IgnoreInteractionSpotOverlap

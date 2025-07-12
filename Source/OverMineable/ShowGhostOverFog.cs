@@ -9,7 +9,7 @@ using RimWorld;
 using Verse;
 using UnityEngine;
 
-namespace Replace_Stuff.OverMineable
+namespace Replace_Stuff_Continued.OverMineable
 {
 	//Cursor
 	[HarmonyPatch(typeof(GhostUtility), "GhostGraphicFor")]

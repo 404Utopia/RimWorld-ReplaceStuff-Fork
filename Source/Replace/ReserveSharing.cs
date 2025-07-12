@@ -8,9 +8,9 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 using HarmonyLib;
-using Replace_Stuff.NewThing;
+using Replace_Stuff_Continued.NewThing;
 
-namespace Replace_Stuff.Replace
+namespace Replace_Stuff_Continued.Replace
 {
 	[StaticConstructorOnStartup]
 	static class ReserveSharing
@@ -19,7 +19,7 @@ namespace Replace_Stuff.Replace
 		static ReserveSharing()
 		{
 			HarmonyMethod prefix = new HarmonyMethod(typeof(ReserveSharing), nameof(ReserveSharing.Prefix));
-			Harmony harmony = new Harmony("404Utopia.rimworld.Replace_Stuff.main");
+			Harmony harmony = new Harmony("404Utopia.rimworld.Replace_Stuff_Continued.main");
 
 			//HERE WE GO
 			foreach (MethodInfo method in AccessTools.GetDeclaredMethods(typeof(ReservationManager)))

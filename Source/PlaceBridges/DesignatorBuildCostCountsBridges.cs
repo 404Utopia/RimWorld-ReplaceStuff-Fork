@@ -9,7 +9,7 @@ using RimWorld;
 using HarmonyLib;
 using UnityEngine;
 
-namespace Replace_Stuff.PlaceBridges
+namespace Replace_Stuff_Continued.PlaceBridges
 {
 	[HarmonyPatch(typeof(Designator_Build), "DrawPlaceMouseAttachments")]
 	static class DesignatorBuildCostCountsBridges

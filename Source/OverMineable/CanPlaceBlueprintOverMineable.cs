@@ -7,7 +7,7 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Replace_Stuff.OverMineable
+namespace Replace_Stuff_Continued.OverMineable
 {
 	static class RockCheck
 	{

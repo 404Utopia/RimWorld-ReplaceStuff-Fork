@@ -7,7 +7,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Replace_Stuff.OverMineable
+namespace Replace_Stuff_Continued.OverMineable
 {
 	[HarmonyPatch(typeof(PlaySettings), "DoPlaySettingsGlobalControls")]
 	[StaticConstructorOnStartup]

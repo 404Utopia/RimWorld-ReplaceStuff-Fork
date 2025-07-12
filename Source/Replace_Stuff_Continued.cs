@@ -5,7 +5,7 @@ using UnityEngine;
 using HarmonyLib;
 using RimWorld;
 
-namespace Replace_Stuff
+namespace Replace_Stuff_Continued
 {
 	public class Mod : Verse.Mod
 	{
@@ -19,11 +19,11 @@ namespace Replace_Stuff
 #if DEBUG
 				Harmony.DEBUG = true;
 #endif
-				new Harmony("404Utopia.rimworld.Replace_Stuff.main").PatchAll();
+				new Harmony("404Utopia.rimworld.Replace_Stuff_Continued.main").PatchAll();
 			}
 			catch (System.Exception ex)
 			{
-				Debug.LogError($"Replace Stuff failed to initialize: {ex}");
+				Debug.LogError($"Replace Stuff (Continued) failed to initialize: {ex}");
 				throw;
 			}
 		}
@@ -42,7 +42,7 @@ namespace Replace_Stuff
 				}
 				catch (System.Exception ex)
 				{
-					Debug.LogError($"Replace Stuff failed during startup: {ex}");
+					Debug.LogError($"Replace Stuff (Continued) failed during startup: {ex}");
 				}
 			}
 		}

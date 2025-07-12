@@ -8,9 +8,9 @@ using HarmonyLib;
 using Verse;
 using Verse.AI;
 using RimWorld;
-using Replace_Stuff.NewThing;
+using Replace_Stuff_Continued.NewThing;
 
-namespace Replace_Stuff.Replace
+namespace Replace_Stuff_Continued.Replace
 {
 	static class DisableThing
 	{

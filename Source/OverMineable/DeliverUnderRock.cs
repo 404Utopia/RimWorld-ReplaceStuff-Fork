@@ -10,7 +10,7 @@ using Verse.AI;
 using HarmonyLib;
 using TD.Utilities;
 
-namespace Replace_Stuff.OverMineable
+namespace Replace_Stuff_Continued.OverMineable
 {
 
 	// In CanConstruct, skip FirstBlockingThing if it's just a haul job
@@ -61,7 +61,7 @@ namespace Replace_Stuff.OverMineable
 		static HaulToBlueprintUnderRock()
 		{
 			HarmonyMethod transpiler = new HarmonyMethod(typeof(DeliverUnderRock), nameof(DeliverUnderRock.Transpiler));
-			Harmony harmony = new Harmony("404Utopia.rimworld.Replace_Stuff.main");
+			Harmony harmony = new Harmony("404Utopia.rimworld.Replace_Stuff_Continued.main");
 
 			Predicate<MethodInfo> check = m => m.Name.Contains("JumpToCarryToNextContainerIfPossible");
 

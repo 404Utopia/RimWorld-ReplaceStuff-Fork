@@ -6,7 +6,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Replace_Stuff.PlaceBridges
+namespace Replace_Stuff_Continued.PlaceBridges
 {
 	public static class CancelAboveBridges
 	{

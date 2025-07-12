@@ -9,7 +9,7 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 
-namespace Replace_Stuff.OverMineable
+namespace Replace_Stuff_Continued.OverMineable
 {
 	//Smooth walls before replacing with other wall, don't mine them away and rebuild.
 	[HarmonyPatch(typeof(GenConstruct), "HandleBlockingThingJob")]

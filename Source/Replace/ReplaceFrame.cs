@@ -9,14 +9,14 @@ using Verse.AI;
 using RimWorld;
 using UnityEngine;
 using HarmonyLib;
-using Replace_Stuff.Utilities;
-using Replace_Stuff.NewThing;
+using Replace_Stuff_Continued.Utilities;
+using Replace_Stuff_Continued.NewThing;
 
 using CostListPair = RimWorld.CostListCalculator.CostListPair;
 using FastCostListPairComparer = RimWorld.CostListCalculator.FastCostListPairComparer;
 
 
-namespace Replace_Stuff
+namespace Replace_Stuff_Continued
 {
 	class ReplaceFrame : Frame
 	{

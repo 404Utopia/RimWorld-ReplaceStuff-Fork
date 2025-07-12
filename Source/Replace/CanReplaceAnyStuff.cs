@@ -6,10 +6,10 @@ using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using RimWorld;
-using Replace_Stuff.NewThing;
+using Replace_Stuff_Continued.NewThing;
 using Verse;
 
-namespace Replace_Stuff
+namespace Replace_Stuff_Continued
 {
 	//public override AcceptanceReport CanDesignateCell(IntVec3 c)
 	[HarmonyPatch(typeof(Designator_Build), "CanDesignateCell")]

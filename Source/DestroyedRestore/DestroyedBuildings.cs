@@ -8,7 +8,7 @@ using Verse;
 using RimWorld;
 using HarmonyLib;
 
-namespace Replace_Stuff.DestroyedRestore
+namespace Replace_Stuff_Continued.DestroyedRestore
 {
 	[HarmonyPatch(typeof(ThingUtility), nameof(ThingUtility.CheckAutoRebuildOnDestroyed))]
 	static class SaveDestroyedBuildings

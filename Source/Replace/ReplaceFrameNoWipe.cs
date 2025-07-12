@@ -6,7 +6,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Replace_Stuff
+namespace Replace_Stuff_Continued
 {
 	/*
 	 * //Redundant due to Deliver under rock allowing all frames

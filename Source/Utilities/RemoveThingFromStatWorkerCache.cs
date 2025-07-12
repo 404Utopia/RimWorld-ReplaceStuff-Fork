@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace Replace_Stuff.Utilities
+namespace Replace_Stuff_Continued.Utilities
 {
 	public static class RemoveThingFromStatWorkerCache
 	{

@@ -5,7 +5,7 @@ using System.Text;
 using Verse;
 using RimWorld;
 
-namespace Replace_Stuff.DestroyedRestore
+namespace Replace_Stuff_Continued.DestroyedRestore
 {
 	[StaticConstructorOnStartup]
 	public static class BuildingReviver

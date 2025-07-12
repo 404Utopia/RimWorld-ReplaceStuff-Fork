@@ -6,7 +6,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Replace_Stuff.NewThing
+namespace Replace_Stuff_Continued.NewThing
 {
 	[HarmonyPatch(typeof(GenConstruct), "BlocksConstruction")]
 	public static class NewThingBlocksConstruction

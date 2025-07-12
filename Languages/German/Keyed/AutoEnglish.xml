@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-	<TD.ReplaceStuff>Replace Stuff</TD.ReplaceStuff>
+	<TD.ReplaceStuff>Replace Stuff (Continued)</TD.ReplaceStuff>
 	<TD.Replace>Ersetze mit</TD.Replace>
 	<TD.ReplaceDesc>Ersetzt das Material eines Objektes, z.B. ersetzt eine Holzwand mit Stein.</TD.ReplaceDesc>
 	<TD.ReplacingTag> (Ersetzen)</TD.ReplacingTag>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 	
-	<TD.ReplaceStuff>Replace Stuff</TD.ReplaceStuff>
+	<TD.ReplaceStuff>Replace Stuff (Continued)</TD.ReplaceStuff>
 	<TD.Replace>대체</TD.Replace>
 	<TD.ReplaceDesc>물건을 대체합니다.\n예. 나무 벽을 돌로 대체</TD.ReplaceDesc>
 	<TD.ReplacingTag> (대체되는중)</TD.ReplacingTag>

@@ -10,7 +10,7 @@ using HarmonyLib;
 using UnityEngine;
 using Verse;
 
-namespace Replace_Stuff
+namespace Replace_Stuff_Continued
 {
 	[HarmonyPatch(typeof(GenConstruct), nameof(GenConstruct.GetWallAttachedTo), [typeof(IntVec3), typeof(Rot4), typeof(Map)])]
 	public static class NoWallAttachment

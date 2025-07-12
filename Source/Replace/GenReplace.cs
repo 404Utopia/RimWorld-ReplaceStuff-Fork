@@ -7,7 +7,7 @@ using Verse;
 using RimWorld;
 using UnityEngine;
 
-namespace Replace_Stuff
+namespace Replace_Stuff_Continued
 {
 	[StaticConstructorOnStartup]
 	public static class QBTypes
@@ -26,7 +26,7 @@ namespace Replace_Stuff
 			}
 			catch (System.Reflection.ReflectionTypeLoadException) //Aeh, this happens to people, should not happen, meh.
 			{
-				Verse.Log.Warning("Replace Stuff failed to check for Quality Builder");
+				Verse.Log.Warning("Replace Stuff (Continued) failed to check for Quality Builder");
 			}
 		}
 	}
