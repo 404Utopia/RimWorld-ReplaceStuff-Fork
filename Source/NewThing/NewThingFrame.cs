@@ -87,6 +87,11 @@ namespace Replace_Stuff_Continued.NewThing
 				return false;
 			}
 
+			if (newDef == null || oldDef == null)
+			{
+				return false;
+			}
+
 			if (_replacementCache.TryGetValue((newDef, oldDef), out var result)) 
 			{
 				return result;
