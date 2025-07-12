@@ -15,8 +15,15 @@ namespace Replace_Stuff_Continued.PlaceBridges
 		public static TerrainDef GetNeededBridge(BuildableDef def, IntVec3 pos, Map map, ThingDef stuff)
 		{
 			if (!pos.InBounds(map)) return null;
+			if (map?.terrainGrid == null) return null;
+			
 			TerrainAffordanceDef needed = def.GetTerrainAffordanceNeed(stuff);
-			return BridgelikeTerrain.FindBridgeFor(map.terrainGrid.TerrainAt(pos), needed, map);
+			if (needed == null) return null;
+			
+			TerrainDef currentTerrain = map.terrainGrid.TerrainAt(pos);
+			if (currentTerrain == null) return null;
+			
+			return BridgelikeTerrain.FindBridgeFor(currentTerrain, needed, map);
 		}
 	}
 
@@ -70,8 +77,10 @@ namespace Replace_Stuff_Continued.PlaceBridges
 
 		public static bool TerrainOrBridgesCanDo(TerrainDef tDef, TerrainAffordanceDef neededDef, BuildableDef def, IntVec3 pos, Map map)
 		{
+			if (tDef == null || neededDef == null || def == null || map == null) return false;
+			
 			//Code Used to be:
-			if (tDef.affordances.Contains(neededDef))
+			if (tDef.affordances?.Contains(neededDef) == true)
 				return true;
 
 			if (def is TerrainDef)

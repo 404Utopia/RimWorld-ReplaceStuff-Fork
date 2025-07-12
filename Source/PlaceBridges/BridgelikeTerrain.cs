@@ -121,6 +121,8 @@ namespace Replace_Stuff_Continued.PlaceBridges
 
 		public static TerrainDef FindBridgeFor(TerrainDef tDef, TerrainAffordanceDef needed, Map map)
 		{
+			if (tDef == null || needed == null || map == null) return null;
+			
 			TerrainDef bestBridge = null;
 			TerrainDef backupBridge = null;
 			if (bridgesForTerrain.TryGetValue((tDef, needed), out var bridges))
@@ -130,10 +132,11 @@ namespace Replace_Stuff_Continued.PlaceBridges
 					{
 						if (backupBridge == null) backupBridge = bridge;  //First possible option
 
-						ThingDefCount cost = bridge.CostList?.FirstOrDefault();
+						ThingDefCount cost = bridge.CostList?.FirstOrDefault() ?? default(ThingDefCount);
 						if (cost.ThingDef == null) //Free bridge? Okay. Or some mod's error. Not my fault.
 							return bridge;
 
+						if (map.resourceCounter == null) continue;
 						int resourceCount = map.resourceCounter.GetCount(cost.ThingDef);
 
 						if (resourceCount > cost.Count * 10)

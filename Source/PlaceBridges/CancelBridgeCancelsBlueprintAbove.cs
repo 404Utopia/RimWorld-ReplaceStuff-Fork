@@ -12,6 +12,8 @@ namespace Replace_Stuff_Continued.PlaceBridges
 	{
 		public static void CancelAbove(BuildableDef defToBuild, DestroyMode mode, Map map, IntVec3 pos)
 		{
+			if (defToBuild == null || map?.thingGrid == null) return;
+			
 			if (defToBuild.IsBridgelike()
 				&& mode != DestroyMode.Vanish && mode != DestroyMode.FailConstruction)
 			{
@@ -57,7 +59,11 @@ namespace Replace_Stuff_Continued.PlaceBridges
 		//public void RemoveTopLayer(IntVec3 c, bool doLeavings = true)
 		public static void Prefix(TerrainGrid __instance, IntVec3 c, Map ___map)
 		{
-			CancelAboveBridges.CancelAbove(__instance.TerrainAt(c), DestroyMode.KillFinalize, ___map, c);
+			if (__instance == null || ___map == null) return;
+			
+			TerrainDef terrain = __instance.TerrainAt(c);
+			if (terrain != null)
+				CancelAboveBridges.CancelAbove(terrain, DestroyMode.KillFinalize, ___map, c);
 		}
 	}
 }
