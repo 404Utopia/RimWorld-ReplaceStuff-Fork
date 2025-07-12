@@ -127,4 +127,19 @@
     <StartAction>Program</StartAction>
     <StartProgram>$(SolutionDir)..\..\RimWorldWin64.exe</StartProgram>
   </PropertyGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <PropertyGroup>
+      <ModName>Replace_Stuff</ModName>
+      <RimWorldModsPath>$(USERPROFILE)\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Mods\$(ModName)\</RimWorldModsPath>
+    </PropertyGroup>
+    
+    <!-- Copy DLL to local Assemblies folder -->
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ProjectDir)..\Assemblies\" />
+    
+    <!-- Copy entire mod to RimWorld mods folder -->
+    <ItemGroup>
+      <ModFiles Include="$(ProjectDir)..\**\*.*" Exclude="$(ProjectDir)..\Source\**\*.*;$(ProjectDir)..\clcd\**\*.*;$(ProjectDir)..\.git\**\*.*;$(ProjectDir)..\*.sln;$(ProjectDir)..\*.csproj;$(ProjectDir)..\*.md;$(ProjectDir)..\*.gitignore" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ModFiles)" DestinationFolder="$(RimWorldModsPath)%(RecursiveDir)" />
+  </Target>
 </Project>
