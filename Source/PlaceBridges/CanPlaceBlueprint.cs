@@ -92,7 +92,7 @@ namespace Replace_Stuff_Continued.PlaceBridges
 			//TODO isn't this redundant?
 			if (pos.GetThingList(map).Any(t =>
 				t.def.entityDefToBuild is TerrainDef bpTDef &&
-				bpTDef.affordances?.Contains(neededDef) == true)))
+				bpTDef.affordances?.Contains(neededDef) == true))
 				return true;
 
 			//Player not choosing to build and bridges possible: ok (elsewhere in code will place blueprints)
