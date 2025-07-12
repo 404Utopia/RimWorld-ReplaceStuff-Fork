@@ -1,0 +1,82 @@
+name: Build and Release Mod
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore Source/Replace_Stuff.csproj
+    
+    - name: Build Release
+      run: dotnet build Source/Replace_Stuff.csproj --configuration Release --no-restore
+    
+    - name: Create mod structure
+      shell: powershell
+      run: |
+        $ModName = "Replace_Stuff_Continued"
+        $ReleaseDir = "Release/$ModName"
+        
+        # Create directory structure
+        New-Item -ItemType Directory -Force -Path "$ReleaseDir/About"
+        New-Item -ItemType Directory -Force -Path "$ReleaseDir/1.6/Assemblies"
+        New-Item -ItemType Directory -Force -Path "$ReleaseDir/1.6/Textures"
+        New-Item -ItemType Directory -Force -Path "$ReleaseDir/Defs"
+        New-Item -ItemType Directory -Force -Path "$ReleaseDir/Languages"
+        New-Item -ItemType Directory -Force -Path "$ReleaseDir/Patches"
+        New-Item -ItemType Directory -Force -Path "$ReleaseDir/Textures"
+        New-Item -ItemType Directory -Force -Path "$ReleaseDir/News"
+        
+        # Copy files
+        Copy-Item "About/*" "$ReleaseDir/About/" -Recurse -Force
+        Copy-Item "Assemblies/Replace_Stuff.dll" "$ReleaseDir/1.6/Assemblies/"
+        Copy-Item "Textures/TDReplaceStuffIcon.png" "$ReleaseDir/1.6/Textures/"
+        Copy-Item "Defs/*" "$ReleaseDir/Defs/" -Recurse -Force -ErrorAction SilentlyContinue
+        Copy-Item "Languages/*" "$ReleaseDir/Languages/" -Recurse -Force -ErrorAction SilentlyContinue
+        Copy-Item "Patches/*" "$ReleaseDir/Patches/" -Recurse -Force -ErrorAction SilentlyContinue
+        Copy-Item "Textures/*" "$ReleaseDir/Textures/" -Recurse -Force -Exclude "TDReplaceStuffIcon.png" -ErrorAction SilentlyContinue
+        Copy-Item "News/*" "$ReleaseDir/News/" -Recurse -Force -ErrorAction SilentlyContinue
+        Copy-Item "LoadFolders.xml" "$ReleaseDir/" -ErrorAction SilentlyContinue
+    
+    - name: Create ZIP
+      shell: powershell
+      run: |
+        $ModName = "Replace_Stuff_Continued"
+        Compress-Archive -Path "Release/$ModName/*" -DestinationPath "$ModName.zip"
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: Replace_Stuff_Continued.zip
+        body: |
+          ## Replace Stuff (Continued) - RimWorld 1.6
+          
+          Continuation of Uuugggg's original Replace Stuff mod, updated for RimWorld 1.6.
+          
+          ### Installation
+          1. Download the ZIP file below
+          2. Extract to your RimWorld Mods folder
+          3. Enable in mod list (requires Harmony)
+          
+          ### Changes
+          - Updated for RimWorld 1.6 compatibility
+          - Fixed API changes and logging issues
+          - Maintained all original functionality
+          
+          Thanks to Uuugggg for the original mod!
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
