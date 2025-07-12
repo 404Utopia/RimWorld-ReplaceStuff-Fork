@@ -131,6 +131,7 @@ This is my attempt to revive and maintain a mod that I found incredibly useful. 
 
 - **Original Author**: [Uuugggg](https://github.com/alextd)
 - **Original Mod**: [Replace Stuff](https://github.com/alextd/RimWorld-ReplaceStuff)
+- **Original Steam Workshop**: [Replace Stuff](https://steamcommunity.com/sharedfiles/filedetails/?id=1372003680)
 
 ## Note to the Original Author
 
