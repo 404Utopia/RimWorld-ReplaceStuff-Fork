@@ -261,6 +261,7 @@ FUNCTIONALITY_CHECKLIST.md
 temp-images/
 clcd/
 *.Zone.Identifier
+RimworldSourceCode/
 
 # Release scripts and templates (keep local only)
 create-release.ps1
