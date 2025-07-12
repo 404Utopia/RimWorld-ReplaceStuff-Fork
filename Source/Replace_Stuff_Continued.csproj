@@ -152,6 +152,7 @@
       <ModIconFile Include="$(ModSourcePath)\Textures\TDReplaceStuffIcon.png" />
       <NewsFiles Include="$(ModSourcePath)\News\**\*.*" />
       <LoadFoldersFile Include="$(ModSourcePath)\LoadFolders.xml" />
+      <PublishedFileIdFile Include="$(ModSourcePath)\PublishedFileId.txt" />
     </ItemGroup>
     
     <Copy SourceFiles="@(AboutFiles)" DestinationFolder="$(RimWorldModsPath)About\%(RecursiveDir)" />
@@ -163,5 +164,6 @@
     <Copy SourceFiles="@(TextureFiles)" DestinationFolder="$(RimWorldModsPath)Textures\%(RecursiveDir)" />
     <Copy SourceFiles="@(NewsFiles)" DestinationFolder="$(RimWorldModsPath)News\%(RecursiveDir)" />
     <Copy SourceFiles="@(LoadFoldersFile)" DestinationFolder="$(RimWorldModsPath)" />
+    <Copy SourceFiles="@(PublishedFileIdFile)" DestinationFolder="$(RimWorldModsPath)" />
   </Target>
 </Project>
