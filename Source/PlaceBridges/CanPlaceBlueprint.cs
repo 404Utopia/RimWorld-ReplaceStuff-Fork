@@ -120,7 +120,7 @@ namespace Replace_Stuff_Continued.PlaceBridges
 			}
 			catch (System.Exception ex)
 			{
-				Log.Warning($"Replace Stuff (Continued) error in bridge placement prefix: {ex.Message}");
+				Verse.Log.Warning($"Replace Stuff (Continued) error in bridge placement prefix: {ex.Message}");
 			}
 		}
 	}
@@ -148,7 +148,7 @@ namespace Replace_Stuff_Continued.PlaceBridges
 			}
 			catch (System.Exception ex)
 			{
-				Log.Warning($"Replace Stuff (Continued) failed to place bridge {bridgeDef} at {pos}: {ex.Message}");
+				Verse.Log.Warning($"Replace Stuff (Continued) failed to place bridge {bridgeDef} at {pos}: {ex.Message}");
 			}
 		}
 	}
