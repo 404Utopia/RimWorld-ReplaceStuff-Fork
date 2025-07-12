@@ -138,6 +138,9 @@
     <!-- Copy only the main DLL to local Assemblies folder -->
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ModSourcePath)\Assemblies\" />
     
+    <!-- Also copy to WSL for easier GitHub releases -->
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="\\wsl.localhost\Ubuntu\home\utopia\RimWorld-ReplaceStuff-Fork\Assemblies\" />
+    
     <!-- Copy mod folders to RimWorld mods directory -->
     <ItemGroup>
       <AboutFiles Include="$(ModSourcePath)\About\**\*.*" />
