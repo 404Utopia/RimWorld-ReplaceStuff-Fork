@@ -259,7 +259,10 @@ __pycache__/
 modderprimer.md
 FUNCTIONALITY_CHECKLIST.md
 temp-images/
+clcd/
+*.Zone.Identifier
 
-# Release scripts (keep local only)
+# Release scripts and templates (keep local only)
 create-release.ps1
 create-release.sh
+RELEASE_TEMPLATE.md
