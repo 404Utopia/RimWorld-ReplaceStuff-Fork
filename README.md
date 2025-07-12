@@ -2,7 +2,6 @@
 
 [![RimWorld](https://img.shields.io/badge/RimWorld-1.6-blue.svg)](https://rimworldgame.com/)
 [![GitHub release](https://img.shields.io/github/v/release/404Utopia/RimWorld-ReplaceStuff-Fork)](https://github.com/404Utopia/RimWorld-ReplaceStuff-Fork/releases)
-[![License](https://img.shields.io/github/license/404Utopia/RimWorld-ReplaceStuff-Fork)](https://github.com/404Utopia/RimWorld-ReplaceStuff-Fork/blob/master/LICENSE)
 
 A continuation of **Uuugggg's** original "Replace Stuff" mod for RimWorld 1.6.
 
@@ -61,15 +60,14 @@ This is my attempt to revive and maintain a mod that I found incredibly useful. 
 
 ## 🙏 Credits and Attribution
 
-**All credit for the original concept, design, and implementation goes to [Uuugggg](https://github.com/Uuugggg).** This mod is a continuation of their excellent work.
+**All credit for the original concept, design, and implementation goes to [Uuugggg](https://github.com/alextd).** This mod is a continuation of their excellent work.
 
-- **Original Author**: [Uuugggg](https://github.com/Uuugggg)
-- **Original Mod**: [Replace Stuff](https://github.com/Uuugggg/RimWorld-ReplaceStuff)
-- **1.6 Continuation**: [404Utopia](https://github.com/404Utopia)
+- **Original Author**: [Uuugggg](https://github.com/alextd)
+- **Original Mod**: [Replace Stuff](https://github.com/alextd/RimWorld-ReplaceStuff)
 
-## ⚖️ Important Legal Notice
+## 📝 Note to the Original Author
 
-**To the original author (Uuugggg)**: If you would prefer that this continuation be removed or if you plan to update the original mod yourself, please reach out and I will **immediately take this down**. I have tremendous respect for your work and don't want to step on any toes. This was created purely out of love for the mod and a desire to keep it alive for the community.
+**To Uuugggg**: If you would prefer that this continuation be removed or if you plan to update the original mod yourself, please reach out and I will **immediately take this down**. I have tremendous respect for your work and don't want to step on any toes. This was created purely out of love for the mod and a desire to keep it alive for the community.
 
 ## 🐛 Bug Reports and Support
 
@@ -88,10 +86,6 @@ I welcome contributions from more experienced modders! If you see something that
 - Open an issue for discussion
 - Submit a pull request with improvements
 - Help with testing and bug reports
-
-## 📄 License
-
-This continuation maintains the same license as the original mod. See [LICENSE](LICENSE) file for details.
 
 ---
 
