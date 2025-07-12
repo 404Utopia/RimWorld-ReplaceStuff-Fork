@@ -144,17 +144,19 @@
       <DefFiles Include="$(ModSourcePath)\Defs\**\*.*" />
       <LanguageFiles Include="$(ModSourcePath)\Languages\**\*.*" />
       <PatchFiles Include="$(ModSourcePath)\Patches\**\*.*" />
-      <TextureFiles Include="$(ModSourcePath)\Textures\**\*.*" />
+      <TextureFiles Include="$(ModSourcePath)\Textures\**\*.*" Exclude="$(ModSourcePath)\Textures\TDReplaceStuffIcon.png" />
+      <ModIconFile Include="$(ModSourcePath)\Textures\TDReplaceStuffIcon.png" />
       <NewsFiles Include="$(ModSourcePath)\News\**\*.*" />
       <LoadFoldersFile Include="$(ModSourcePath)\LoadFolders.xml" />
     </ItemGroup>
     
     <Copy SourceFiles="@(AboutFiles)" DestinationFolder="$(RimWorldModsPath)About\%(RecursiveDir)" />
     <Copy SourceFiles="@(MainAssemblyFile)" DestinationFolder="$(RimWorldModsPath)1.6\Assemblies\" />
-    <Copy SourceFiles="@(DefFiles)" DestinationFolder="$(RimWorldModsPath)1.6\Defs\%(RecursiveDir)" />
-    <Copy SourceFiles="@(LanguageFiles)" DestinationFolder="$(RimWorldModsPath)1.6\Languages\%(RecursiveDir)" />
-    <Copy SourceFiles="@(PatchFiles)" DestinationFolder="$(RimWorldModsPath)1.6\Patches\%(RecursiveDir)" />
-    <Copy SourceFiles="@(TextureFiles)" DestinationFolder="$(RimWorldModsPath)1.6\Textures\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ModIconFile)" DestinationFolder="$(RimWorldModsPath)1.6\Textures\" />
+    <Copy SourceFiles="@(DefFiles)" DestinationFolder="$(RimWorldModsPath)Defs\%(RecursiveDir)" />
+    <Copy SourceFiles="@(LanguageFiles)" DestinationFolder="$(RimWorldModsPath)Languages\%(RecursiveDir)" />
+    <Copy SourceFiles="@(PatchFiles)" DestinationFolder="$(RimWorldModsPath)Patches\%(RecursiveDir)" />
+    <Copy SourceFiles="@(TextureFiles)" DestinationFolder="$(RimWorldModsPath)Textures\%(RecursiveDir)" />
     <Copy SourceFiles="@(NewsFiles)" DestinationFolder="$(RimWorldModsPath)News\%(RecursiveDir)" />
     <Copy SourceFiles="@(LoadFoldersFile)" DestinationFolder="$(RimWorldModsPath)" />
   </Target>
