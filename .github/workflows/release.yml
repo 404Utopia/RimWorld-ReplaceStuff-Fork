@@ -41,7 +41,7 @@ jobs:
         
         # Copy files
         Copy-Item "About/*" "$ReleaseDir/About/" -Recurse -Force
-        Copy-Item "Assemblies/Replace_Stuff_Continued.dll" "$ReleaseDir/1.6/Assemblies/"
+        Copy-Item "Source/bin/Release/Replace_Stuff_Continued.dll" "$ReleaseDir/1.6/Assemblies/"
         Copy-Item "Textures/TDReplaceStuffIcon.png" "$ReleaseDir/1.6/Textures/"
         Copy-Item "Defs/*" "$ReleaseDir/Defs/" -Recurse -Force -ErrorAction SilentlyContinue
         Copy-Item "Languages/*" "$ReleaseDir/Languages/" -Recurse -Force -ErrorAction SilentlyContinue
