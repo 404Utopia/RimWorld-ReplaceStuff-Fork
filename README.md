@@ -5,16 +5,75 @@
 
 A continuation of **Uuugggg's** original "Replace Stuff" mod for RimWorld 1.6.
 
+**Place buildings anywhere, on top of existing things, and the game will handle it. NOT dead for 1.6!**
+
 ## What This Mod Does
 
-Replace Stuff (Continued) allows you to replace the material of existing structures without having to deconstruct and rebuild them. Instead of tearing down a wooden wall to build a stone one, you can simply designate it for replacement and your colonists will upgrade it in place.
+Replace Stuff (Continued) allows you to place buildings anywhere you want - on top of existing things, over rocks, water, or undiscovered areas - and the game will intelligently handle the construction process.
 
-### Key Features
-- **In-place replacement**: No need to deconstruct existing buildings
-- **Material upgrades**: Replace wood with stone, steel, plasteel, etc.
-- **Bridge placement**: Automatically places appropriate bridges for water/terrain
-- **Cooler placement**: Install coolers over walls without additional construction
-- **Blueprint queuing**: Works with RimWorld 1.6's new blueprint system
+### Core Features
+- **Replace building materials**: Replace a wooden wall with slate wall without deconstructing
+- **Upgrade buildings**: Doors to autodoors, beds to bigger beds, workbenches to electric versions  
+- **Build over obstacles**: Rocks will be mined away, bridges built over water automatically
+- **Preserve settings**: Destroyed buildings that are auto-rebuilt remember their settings
+- **Over-wall coolers**: Install coolers without breaking walls
+- **Works with 1.6 blueprints**: Enhanced functionality beyond vanilla 1.6 blueprint system
+
+### Why This is Better Than Vanilla 1.6
+
+While RimWorld 1.6 added blueprints over walls, it doesn't do many of the advanced features this mod provides:
+- 1.6 doesn't make replacement a single job
+- 1.6 doesn't preserve settings of replaced beds/workbenches  
+- 1.6 doesn't handle building over rocks/water automatically
+- 1.6 doesn't include over-wall coolers
+- 1.6 doesn't remember settings when buildings are auto-rebuilt
+
+## Detailed Features
+
+### Replace Stuff
+Use the new Replace tool in the "Architect/Structure" menu to replace any building's materials. Or place a building with new stuff over an old building.
+
+Benefits of replacement vs deconstruction:
+- Upgrading walls doesn't break the room, keeps freezers cold
+- Replacing workbenches preserves the bill list
+- Replacing beds preserves their owner
+- Work needed is same as normal deconstruction + construction
+- Materials needed is just the stuff being replaced
+- Get back 75% of replaced materials (normal deconstruction rate)
+
+### Upgrade Buildings
+Build new buildings over old ones and they'll keep the old one in place until construction is done:
+- Walls, doors, auto-doors
+- Beds to other beds
+- Coolers to other coolers  
+- Fueled stove/tailoring bench to electric versions
+- Tables and workbenches
+- Supports modded buildings like RimFridges and Fences mod
+
+### Auto-Rebuild Settings Memory
+Buildings remember their settings when auto-rebuilt:
+- Work tables remember bills
+- Coolers/heaters remember temperature settings
+- Hydroponics remember plant selection
+- Storage buildings remember filter settings
+
+### Build Over Obstacles
+- **Rocks**: Place blueprints over mountain rock, miners will clear it automatically
+- **Water**: Place blueprints over water, bridges will be built automatically
+- **Fog of war**: Build in undiscovered areas (invalid blueprints canceled after revealing)
+- **Toggle available**: Bottom-right screen toggle to disable rock mining when placing blueprints
+
+### Over-Wall Coolers
+- Behave exactly like normal coolers but don't act as walls
+- Must be placed on top of walls (doesn't break walls)
+- Includes double-width over-wall coolers for thick freezer walls
+- Can place even if hot/cold tiles are blocked (remove blockage later)
+- Settings option to hide vanilla or over-wall coolers from build menu
+
+### Minor Improvements
+- Pawns don't block construction
+- Corner walls are buildable from inside
+- Smarter resource delivery to blocked construction sites
 
 ## Requirements
 
@@ -37,10 +96,18 @@ Replace Stuff (Continued) allows you to replace the material of existing structu
 
 ## How to Use
 
-1. Select any built structure (walls, floors, furniture, etc.)
-2. Right-click and choose "Replace with..." from the context menu
-3. Select the new material you want to use
-4. Your colonists will automatically replace the structure when they have time and materials
+1. Use the Replace tool in Architect/Structure menu, OR
+2. Simply place any building over an existing one with different materials
+3. The game will automatically handle mining, bridge building, and replacement
+4. Buildings under construction generally can't be used until replacement is complete
+
+## Compatibility Notes
+
+- Works with existing saves (no new save required)
+- Remove any active replacement jobs before uninstalling
+- Compatible with modded buildings, bridges, and workbenches
+- Buildings with quality get new quality level when replaced
+- Replacement jobs can fail like normal construction (loses 50% materials)
 
 ## Development Status
 
