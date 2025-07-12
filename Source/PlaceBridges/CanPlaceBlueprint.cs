@@ -111,10 +111,17 @@ namespace Replace_Stuff_Continued.PlaceBridges
 		//public static Blueprint_Build PlaceBlueprintForBuild(BuildableDef sourceDef, IntVec3 center, Map map, Rot4 rotation, Faction faction, ThingDef stuff)
 		public static void Prefix(BuildableDef sourceDef, IntVec3 center, Map map, Rot4 rotation, Faction faction, ThingDef stuff)
 		{
-			if (faction != Faction.OfPlayer || sourceDef.IsBridgelike()) return;
+			if (sourceDef == null || map == null || faction != Faction.OfPlayer || sourceDef.IsBridgelike()) return;
 
-			foreach (IntVec3 pos in GenAdj.CellsOccupiedBy(center, rotation, sourceDef.Size))
-				EnsureBridge.PlaceBridgeIfNeeded(sourceDef, pos, map, rotation, faction, stuff);
+			try
+			{
+				foreach (IntVec3 pos in GenAdj.CellsOccupiedBy(center, rotation, sourceDef.Size))
+					EnsureBridge.PlaceBridgeIfNeeded(sourceDef, pos, map, rotation, faction, stuff);
+			}
+			catch (System.Exception ex)
+			{
+				Log.Error($"Replace Stuff (Continued) error in bridge placement prefix: {ex.Message}");
+			}
 		}
 	}
 
@@ -122,16 +129,27 @@ namespace Replace_Stuff_Continued.PlaceBridges
 	{
 		public static void PlaceBridgeIfNeeded(BuildableDef sourceDef, IntVec3 pos, Map map, Rot4 rotation, Faction faction, ThingDef stuff)
 		{
+			if (sourceDef == null || map == null || !pos.InBounds(map)) return;
+			
 			TerrainDef bridgeDef = PlaceBridges.GetNeededBridge(sourceDef, pos, map, stuff);
 
 			if (bridgeDef == null)
 				return;
 
-			if (pos.GetThingList(map).Any(t => t.def.entityDefToBuild == bridgeDef))
+			// Check if there's already a blueprint for this bridge being built
+			var thingList = pos.GetThingList(map);
+			if (thingList?.Any(t => t?.def?.entityDefToBuild == bridgeDef) == true)
 				return;//Already building!
 
-			Log.Message($"Replace Stuff (Continued) placing {bridgeDef} for {sourceDef}({sourceDef.GetTerrainAffordanceNeed(stuff)}) on {map.terrainGrid.TerrainAt(pos)}");
-			GenConstruct.PlaceBlueprintForBuild(bridgeDef, pos, map, rotation, faction, null);//Are there bridge precepts/styles?...
+			try
+			{
+				Log.Message($"Replace Stuff (Continued) placing {bridgeDef} for {sourceDef}({sourceDef.GetTerrainAffordanceNeed(stuff)}) on {map.terrainGrid?.TerrainAt(pos)}");
+				GenConstruct.PlaceBlueprintForBuild(bridgeDef, pos, map, rotation, faction, null);//Are there bridge precepts/styles?...
+			}
+			catch (System.Exception ex)
+			{
+				Log.Error($"Replace Stuff (Continued) failed to place bridge {bridgeDef} at {pos}: {ex.Message}");
+			}
 		}
 	}
 

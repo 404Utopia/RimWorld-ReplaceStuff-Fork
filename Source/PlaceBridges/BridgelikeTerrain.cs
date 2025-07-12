@@ -29,12 +29,16 @@ namespace Replace_Stuff_Continued.PlaceBridges
 
 		static BridgelikeTerrain()
 		{
-			//Ignore providing diggable because VFE's dirt can turn any terrain into diggable
-			HashSet<TerrainAffordanceDef> ignoreAff = new HashSet<TerrainAffordanceDef>
+			try
 			{
-				DefDatabase<TerrainAffordanceDef>.GetNamed("Diggable"),
-				DefDatabase<TerrainAffordanceDef>.GetNamed("GrowSoil")
-			};
+				//Ignore providing diggable because VFE's dirt can turn any terrain into diggable
+				HashSet<TerrainAffordanceDef> ignoreAff = new HashSet<TerrainAffordanceDef>();
+				
+				var diggable = DefDatabase<TerrainAffordanceDef>.GetNamed("Diggable", false);
+				var growSoil = DefDatabase<TerrainAffordanceDef>.GetNamed("GrowSoil", false);
+				
+				if (diggable != null) ignoreAff.Add(diggable);
+				if (growSoil != null) ignoreAff.Add(growSoil);
 
 
 			//If you have Affordance 1 and need Affordance 2, you can build one of these TerrainDef
@@ -115,9 +119,17 @@ namespace Replace_Stuff_Continued.PlaceBridges
 			}
 			allBridgeTerrains.RemoveDuplicates();
 			Log.Message($"Bridges: {allBridgeTerrains.ToStringSafeEnumerable()}");
+			}
+			catch (System.Exception ex)
+			{
+				Log.Error($"Replace Stuff (Continued) error in BridgelikeTerrain static constructor: {ex.Message}");
+				// Initialize empty collections to prevent further null reference exceptions
+				bridgesForTerrain = bridgesForTerrain ?? new Dictionary<(TerrainDef, TerrainAffordanceDef), HashSet<TerrainDef>>();
+				allBridgeTerrains = allBridgeTerrains ?? new List<TerrainDef>();
+			}
 		}
 
-		public static bool IsBridgelike(this BuildableDef tdef) => allBridgeTerrains.Contains(tdef);
+		public static bool IsBridgelike(this BuildableDef tdef) => tdef != null && allBridgeTerrains?.Contains(tdef) == true;
 
 		public static TerrainDef FindBridgeFor(TerrainDef tDef, TerrainAffordanceDef needed, Map map)
 		{
@@ -125,26 +137,29 @@ namespace Replace_Stuff_Continued.PlaceBridges
 			
 			TerrainDef bestBridge = null;
 			TerrainDef backupBridge = null;
-			if (bridgesForTerrain.TryGetValue((tDef, needed), out var bridges))
+			if (bridgesForTerrain?.TryGetValue((tDef, needed), out var bridges) == true && bridges != null)
 			{
-				foreach (TerrainDef bridge in allBridgeTerrains)
-					if (bridges.Contains(bridge))
-					{
-						if (backupBridge == null) backupBridge = bridge;  //First possible option
+				if (allBridgeTerrains != null)
+				{
+					foreach (TerrainDef bridge in allBridgeTerrains)
+						if (bridge != null && bridges.Contains(bridge))
+						{
+							if (backupBridge == null) backupBridge = bridge;  //First possible option
 
-						ThingDefCount cost = bridge.CostList?.FirstOrDefault() ?? default(ThingDefCount);
-						if (cost.ThingDef == null) //Free bridge? Okay. Or some mod's error. Not my fault.
-							return bridge;
+							ThingDefCount cost = bridge.CostList?.FirstOrDefault() ?? default(ThingDefCount);
+							if (cost.ThingDef == null) //Free bridge? Okay. Or some mod's error. Not my fault.
+								return bridge;
 
-						if (map.resourceCounter == null) continue;
-						int resourceCount = map.resourceCounter.GetCount(cost.ThingDef);
+							if (map.resourceCounter == null) continue;
+							int resourceCount = map.resourceCounter.GetCount(cost.ThingDef);
 
-						if (resourceCount > cost.Count * 10)
-							return bridge;//Plently. Use this.
+							if (resourceCount > cost.Count * 10)
+								return bridge;//Plently. Use this.
 
-						if (resourceCount > 0)
-							bestBridge = bridge;//Not enough but at least this will work.
-					}
+							if (resourceCount > 0)
+								bestBridge = bridge;//Not enough but at least this will work.
+						}
+				}
 			}
 			return bestBridge ?? backupBridge;
 		}
