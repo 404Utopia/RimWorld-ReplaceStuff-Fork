@@ -12,16 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '6.0.x'
-    
-    - name: Restore dependencies
-      run: dotnet restore Source/Replace_Stuff_Continued.csproj
-    
-    - name: Build Release
-      run: dotnet build Source/Replace_Stuff_Continued.csproj --configuration Release --no-restore
+    - name: Check for pre-built DLL
+      run: |
+        if (!(Test-Path "Assemblies/Replace_Stuff_Continued.dll")) {
+          Write-Host "Error: Pre-built DLL not found. Please build locally and commit the DLL to Assemblies/ folder first." -ForegroundColor Red
+          exit 1
+        }
+        Write-Host "Found pre-built DLL: Assemblies/Replace_Stuff_Continued.dll" -ForegroundColor Green
     
     - name: Create mod structure
       shell: powershell
@@ -41,7 +38,7 @@ jobs:
         
         # Copy files
         Copy-Item "About/*" "$ReleaseDir/About/" -Recurse -Force
-        Copy-Item "Source/bin/Release/Replace_Stuff_Continued.dll" "$ReleaseDir/1.6/Assemblies/"
+        Copy-Item "Assemblies/Replace_Stuff_Continued.dll" "$ReleaseDir/1.6/Assemblies/"
         Copy-Item "Textures/TDReplaceStuffIcon.png" "$ReleaseDir/1.6/Textures/"
         Copy-Item "Defs/*" "$ReleaseDir/Defs/" -Recurse -Force -ErrorAction SilentlyContinue
         Copy-Item "Languages/*" "$ReleaseDir/Languages/" -Recurse -Force -ErrorAction SilentlyContinue
