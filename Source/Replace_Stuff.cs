@@ -12,12 +12,20 @@ namespace Replace_Stuff
 		public static Settings settings;
 		public Mod(ModContentPack content) : base(content)
 		{
-			// initialize settings
-			settings = GetSettings<Settings>();
+			try
+			{
+				// initialize settings
+				settings = GetSettings<Settings>();
 #if DEBUG
-			Harmony.DEBUG = true;
+				Harmony.DEBUG = true;
 #endif
-			new Harmony("Uuugggg.rimworld.Replace_Stuff.main").PatchAll();
+				new Harmony("Uuugggg.rimworld.Replace_Stuff.main").PatchAll();
+			}
+			catch (System.Exception ex)
+			{
+				Log.Error($"Replace Stuff failed to initialize: {ex}");
+				throw;
+			}
 		}
 
 		[StaticConstructorOnStartup]
@@ -25,10 +33,17 @@ namespace Replace_Stuff
 		{
 			static ModStartup()
 			{
-				//Hugslibs-added defs will be queued up before this Static Constructor
-				//So queue replace frame generation after that
-				LongEventHandler.QueueLongEvent(() => ThingDefGenerator_ReplaceFrame.AddReplaceFrames(), null, true, null);
-				LongEventHandler.QueueLongEvent(() => CoolersOverWalls.DesignatorBuildDropdownStuffFix.SanityCheck(), null, true, null);
+				try
+				{
+					//Hugslibs-added defs will be queued up before this Static Constructor
+					//So queue replace frame generation after that
+					LongEventHandler.QueueLongEvent(() => ThingDefGenerator_ReplaceFrame.AddReplaceFrames(), null, true, null);
+					LongEventHandler.QueueLongEvent(() => CoolersOverWalls.DesignatorBuildDropdownStuffFix.SanityCheck(), null, true, null);
+				}
+				catch (System.Exception ex)
+				{
+					Log.Error($"Replace Stuff failed during startup: {ex}");
+				}
 			}
 		}
 
