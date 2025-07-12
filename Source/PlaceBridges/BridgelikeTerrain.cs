@@ -122,7 +122,7 @@ namespace Replace_Stuff_Continued.PlaceBridges
 			}
 			catch (System.Exception ex)
 			{
-				Log.Error($"Replace Stuff (Continued) error in BridgelikeTerrain static constructor: {ex.Message}");
+				Log.Warning($"Replace Stuff (Continued) error in BridgelikeTerrain static constructor: {ex.Message}");
 				// Initialize empty collections to prevent further null reference exceptions
 				bridgesForTerrain = bridgesForTerrain ?? new Dictionary<(TerrainDef, TerrainAffordanceDef), HashSet<TerrainDef>>();
 				allBridgeTerrains = allBridgeTerrains ?? new List<TerrainDef>();
