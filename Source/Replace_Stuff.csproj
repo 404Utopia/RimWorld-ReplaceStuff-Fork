@@ -131,15 +131,31 @@
     <PropertyGroup>
       <ModName>Replace_Stuff</ModName>
       <RimWorldModsPath>$(USERPROFILE)\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Mods\$(ModName)\</RimWorldModsPath>
+      <ModSourcePath>$(ProjectDir)..</ModSourcePath>
     </PropertyGroup>
     
     <!-- Copy DLL to local Assemblies folder -->
-    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ProjectDir)..\Assemblies\" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ModSourcePath)\Assemblies\" />
     
-    <!-- Copy entire mod to RimWorld mods folder -->
+    <!-- Copy mod folders to RimWorld mods directory -->
     <ItemGroup>
-      <ModFiles Include="$(ProjectDir)..\**\*.*" Exclude="$(ProjectDir)..\Source\**\*.*;$(ProjectDir)..\clcd\**\*.*;$(ProjectDir)..\.git\**\*.*;$(ProjectDir)..\.vs\**\*.*;$(ProjectDir)..\*.sln;$(ProjectDir)..\*.csproj;$(ProjectDir)..\*.md;$(ProjectDir)..\*.gitignore" />
+      <AboutFiles Include="$(ModSourcePath)\About\**\*.*" />
+      <AssemblyFiles Include="$(ModSourcePath)\Assemblies\**\*.*" />
+      <DefFiles Include="$(ModSourcePath)\Defs\**\*.*" />
+      <LanguageFiles Include="$(ModSourcePath)\Languages\**\*.*" />
+      <PatchFiles Include="$(ModSourcePath)\Patches\**\*.*" />
+      <TextureFiles Include="$(ModSourcePath)\Textures\**\*.*" />
+      <NewsFiles Include="$(ModSourcePath)\News\**\*.*" />
+      <LoadFoldersFile Include="$(ModSourcePath)\LoadFolders.xml" />
     </ItemGroup>
-    <Copy SourceFiles="@(ModFiles)" DestinationFolder="$(RimWorldModsPath)%(RecursiveDir)" />
+    
+    <Copy SourceFiles="@(AboutFiles)" DestinationFolder="$(RimWorldModsPath)About\%(RecursiveDir)" />
+    <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(RimWorldModsPath)Assemblies\%(RecursiveDir)" />
+    <Copy SourceFiles="@(DefFiles)" DestinationFolder="$(RimWorldModsPath)Defs\%(RecursiveDir)" />
+    <Copy SourceFiles="@(LanguageFiles)" DestinationFolder="$(RimWorldModsPath)Languages\%(RecursiveDir)" />
+    <Copy SourceFiles="@(PatchFiles)" DestinationFolder="$(RimWorldModsPath)Patches\%(RecursiveDir)" />
+    <Copy SourceFiles="@(TextureFiles)" DestinationFolder="$(RimWorldModsPath)Textures\%(RecursiveDir)" />
+    <Copy SourceFiles="@(NewsFiles)" DestinationFolder="$(RimWorldModsPath)News\%(RecursiveDir)" />
+    <Copy SourceFiles="@(LoadFoldersFile)" DestinationFolder="$(RimWorldModsPath)" />
   </Target>
 </Project>
