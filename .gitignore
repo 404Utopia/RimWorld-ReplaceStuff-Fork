@@ -266,3 +266,4 @@ clcd/
 create-release.ps1
 create-release.sh
 RELEASE_TEMPLATE.md
+STEAM_DESCRIPTION.txt
