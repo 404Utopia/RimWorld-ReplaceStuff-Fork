@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Assemblies\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -135,10 +135,7 @@
       <ModSourcePath>$(ProjectDir)..</ModSourcePath>
     </PropertyGroup>
     
-    <!-- Copy only the main DLL to local Assemblies folder -->
-    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(ModSourcePath)\Assemblies\" />
-    
-    <!-- Also copy to WSL for easier GitHub releases -->
+    <!-- Copy to WSL for easier GitHub releases -->
     <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="\\wsl.localhost\Ubuntu\home\utopia\RimWorld-ReplaceStuff-Fork\Assemblies\" />
     
     <!-- Copy mod folders to RimWorld mods directory -->
@@ -165,5 +162,6 @@
     <Copy SourceFiles="@(NewsFiles)" DestinationFolder="$(RimWorldModsPath)News\%(RecursiveDir)" />
     <Copy SourceFiles="@(LoadFoldersFile)" DestinationFolder="$(RimWorldModsPath)" />
     <Copy SourceFiles="@(PublishedFileIdFile)" DestinationFolder="$(RimWorldModsPath)" />
+    <Copy SourceFiles="@(PublishedFileIdFile)" DestinationFolder="$(RimWorldModsPath)About\" />
   </Target>
 </Project>
