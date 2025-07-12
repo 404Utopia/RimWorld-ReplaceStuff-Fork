@@ -262,3 +262,4 @@ temp-images/
 
 # Release scripts (keep local only)
 create-release.ps1
+create-release.sh
