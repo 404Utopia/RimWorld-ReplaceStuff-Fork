@@ -259,3 +259,6 @@ __pycache__/
 modderprimer.md
 FUNCTIONALITY_CHECKLIST.md
 temp-images/
+
+# Release scripts (keep local only)
+create-release.ps1
