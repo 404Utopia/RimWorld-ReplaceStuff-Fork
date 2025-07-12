@@ -23,7 +23,7 @@ namespace Replace_Stuff
 			}
 			catch (System.Exception ex)
 			{
-				Log.Error($"Replace Stuff failed to initialize: {ex}");
+				Log.ErrorOnce($"Replace Stuff failed to initialize: {ex}", "ReplaceStuff_InitError");
 				throw;
 			}
 		}
@@ -42,7 +42,7 @@ namespace Replace_Stuff
 				}
 				catch (System.Exception ex)
 				{
-					Log.Error($"Replace Stuff failed during startup: {ex}");
+					Log.ErrorOnce($"Replace Stuff failed during startup: {ex}", "ReplaceStuff_StartupError");
 				}
 			}
 		}
