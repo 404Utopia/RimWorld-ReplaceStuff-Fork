@@ -81,8 +81,10 @@ namespace Replace_Stuff_Continued.NewThing
 
 		public static bool CanReplace(this ThingDef newDef, ThingDef oldDef)
 		{
+			if (newDef == null || oldDef == null) return false;
+			
 			newDef = GenConstruct.BuiltDefOf(newDef) as ThingDef;
-			if (newDef == oldDef)
+			if (newDef == null || newDef == oldDef)
 			{
 				return false;
 			}
@@ -93,10 +95,17 @@ namespace Replace_Stuff_Continued.NewThing
 			} 
 
 			// 1.6 added some tags for replacement. Add them here so Replace Stuff (Continued) does then in-place
-			if(GenConstruct.HasMatchingReplacementTag(newDef, oldDef))
+			try
 			{
-				_replacementCache.Add((newDef, oldDef), true);
-				return true;
+				if(GenConstruct.HasMatchingReplacementTag(newDef, oldDef))
+				{
+					_replacementCache.Add((newDef, oldDef), true);
+					return true;
+				}
+			}
+			catch (System.Exception ex)
+			{
+				Verse.Log.Warning($"Replace Stuff (Continued) error checking replacement tags for {newDef?.defName} -> {oldDef?.defName}: {ex.Message}");
 			}
 
 			foreach (var r in replacements)
@@ -221,39 +230,68 @@ namespace Replace_Stuff_Continued.NewThing
 
 		public static bool IsNewThingReplacement(this ThingDef newDef, IntVec3 pos, Rot4 rotation, Map map, out Thing oldThing)
 		{
-			if (map == null)
+			oldThing = null;
+			if (map == null || newDef == null || !pos.InBounds(map))
 			{
-				oldThing = null;
 				return false;
 			}
 
-			foreach (IntVec3 checkPos in GenAdj.OccupiedRect(pos, rotation, newDef.Size))
+			try
 			{
-				foreach (Thing oThing in checkPos.GetThingList(map))
+				foreach (IntVec3 checkPos in GenAdj.OccupiedRect(pos, rotation, newDef.Size))
 				{
-					if (newDef.CanReplace(oThing.def))
+					if (!checkPos.InBounds(map)) continue;
+					
+					var thingList = checkPos.GetThingList(map);
+					if (thingList != null)
 					{
-						oldThing = oThing;
-						return true;
+						foreach (Thing oThing in thingList)
+						{
+							if (oThing?.def != null && newDef.CanReplace(oThing.def))
+							{
+								oldThing = oThing;
+								return true;
+							}
+						}
 					}
 				}
 			}
+			catch (System.Exception ex)
+			{
+				Verse.Log.Warning($"Replace Stuff (Continued) error in IsNewThingReplacement for {newDef?.defName} at {pos}: {ex.Message}");
+			}
 
-			oldThing = null;
 			return false;
 		}
 		
 		public static bool CanReplace(this Thing newThing, Thing oldThing)
 		{
-			return newThing.def.CanReplace(oldThing.def);
+			return newThing?.def != null && oldThing?.def != null && newThing.def.CanReplace(oldThing.def);
 		}
 
 		public static Thing BeingReplacedByNewThing(this Thing oldThing)
 		{
-			foreach (IntVec3 checkPos in GenAdj.OccupiedRect(oldThing.Position, oldThing.Rotation, oldThing.def.size))
-				foreach (Thing newThing in checkPos.GetThingList(oldThing.Map))
-					if (newThing.CanReplace(oldThing))
-						return newThing;
+			if (oldThing?.def == null || oldThing.Map == null) return null;
+			
+			try
+			{
+				foreach (IntVec3 checkPos in GenAdj.OccupiedRect(oldThing.Position, oldThing.Rotation, oldThing.def.size))
+				{
+					if (!checkPos.InBounds(oldThing.Map)) continue;
+					
+					var thingList = checkPos.GetThingList(oldThing.Map);
+					if (thingList != null)
+					{
+						foreach (Thing newThing in thingList)
+							if (newThing?.CanReplace(oldThing) == true)
+								return newThing;
+					}
+				}
+			}
+			catch (System.Exception ex)
+			{
+				Verse.Log.Warning($"Replace Stuff (Continued) error in BeingReplacedByNewThing for {oldThing?.def?.defName}: {ex.Message}");
+			}
 
 			return null;
 		}
